@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ShopStyle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Include base styles from HomePage.html */
+
+        .about-header {
+            margin-top: 80px;
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .about-content {
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .about-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .about-card.visible {
+            animation: slideUpFade 1s forwards;
+        }
+
+        .team-section {
+            padding: 4rem 5%;
+            background: #f9f9f9;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            opacity: 0;
+        }
+
+        .team-member.visible {
+            animation: popIn 0.5s forwards;
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes slideUpFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include navbar -->
+
+    <header class="about-header">
+        <div class="hero-content">
+            <h1>Our Story</h1>
+            <p>Building the future of fashion, one style at a time</p>
+        </div>
+    </header>
+
+    <section class="about-content">
+        <div class="about-card">
+            <h2>Our Mission</h2>
+            <p>To provide exceptional fashion solutions...</p>
+        </div>
+        <div class="about-card">
+            <h2>Our Vision</h2>
+            <p>Leading the way in sustainable fashion...</p>
+        </div>
+        <div class="about-card">
+            <h2>Our Values</h2>
+            <p>Quality, Innovation, Sustainability...</p>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+            <!-- Team members -->
+        </div>
+    </section>
+
+    <!-- Include footer -->
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all cards and team members
+        document.querySelectorAll('.about-card, .team-member').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

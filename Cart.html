@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - ShopStyle</title>
+    <style>
+        .cart-container {
+            margin-top: 80px;
+            padding: 2rem 5%;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 2rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .cart-item.visible {
+            animation: slideInFade 0.5s forwards;
+        }
+
+        .cart-total {
+            margin-top: 2rem;
+            text-align: right;
+            opacity: 0;
+        }
+
+        .cart-total.visible {
+            animation: fadeIn 1s forwards;
+        }
+
+        .checkout-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: scale(1.05);
+            background: #ff3333;
+        }
+
+        @keyframes slideInFade {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include navbar -->
+
+    <div class="cart-container">
+        <h1>Your Shopping Cart</h1>
+        <div id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            <h2>Total: $<span id="cartTotal">0.00</span></h2>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Include footer -->
+
+    <script>
+        // Cart functionality
+        class Cart {
+            constructor() {
+                this.items = [];
+                this.total = 0;
+            }
+
+            addItem(item) {
+                this.items.push(item);
+                this.updateTotal();
+                this.renderCart();
+            }
+
+            removeItem(id) {
+                this.items = this.items.filter(item => item.id !== id);
+                this.updateTotal();
+                this.renderCart();
+            }
+
+            updateTotal() {
+                this.total = this.items.reduce((sum, item) => sum + item.price, 0);
+                document.getElementById('cartTotal').textContent = this.total.toFixed(2);
+            }
+
+            renderCart() {
+                const cartContainer = document.getElementById('cartItems');
+                cartContainer.innerHTML = '';
+                
+                this.items.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    // Add item content
+                    observer.observe(cartItem);
+                });
+            }
+        }
+
+        const cart = new Cart();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        // Observe cart total
+        observer.observe(document.querySelector('.cart-total'));
+    </script>
+</body>
+</html>

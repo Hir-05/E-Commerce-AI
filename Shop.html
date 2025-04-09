@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - ShopStyle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Include all existing styles from HomePage.html */
+        
+        /* Additional Shop Page Styles */
+        .shop-header {
+            margin-top: 80px;
+            padding: 3rem 5%;
+            text-align: center;
+            background: #f9f9f9;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            animation: slideUp 1s ease-out;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #333;
+            border-radius: 25px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover {
+            background: #ff4d4d;
+            color: white;
+            border-color: #ff4d4d;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5%;
+        }
+
+        .product-card {
+            position: relative;
+        }
+
+        .add-to-cart {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Include navbar from HomePage.html -->
+
+    <header class="shop-header">
+        <h1>Our Products</h1>
+        <div class="filters">
+            <button class="filter-button">All</button>
+            <button class="filter-button">Electronics</button>
+            <button class="filter-button">Fashion</button>
+            <button class="filter-button">Accessories</button>
+        </div>
+    </header>
+
+    <main class="shop-grid">
+        <!-- Include multiple product cards with add-to-cart buttons -->
+    </main>
+
+    <!-- Include footer from HomePage.html -->
+</body>
+</html>
